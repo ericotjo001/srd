@@ -1,0 +1,44 @@
+python mujoco_entry.py --mode devtests --testtype vary_control_strength --model half-cheetah
+
+python mujoco_entry.py --mode srd-model-design --model half-cheetah --stage 1
+python mujoco_entry.py --mode srd-model-design --model half-cheetah --stage 2
+python mujoco_entry.py --mode srd-model-design --model half-cheetah --stage 3
+python mujoco_entry.py --mode srd-model-design --model half-cheetah --stage 4
+
+
+##See appendix 1 to see how we run sample experiment. 
+# Here, we will use the commands to run multiple experiments at once
+
+python mujoco_entry.py --mode srd-expt-mass --model half-cheetah --exptcodename massexpt --nexpt 7 --bswing_grid 1.0 2.0 3.0 4.0 5.0   
+python mujoco_entry.py --mode srd-visualize --model half-cheetah --exptcodename massexpt
+
+####################################
+#              appendix 0 
+####################################
+
+# devtests
+python mujoco_entry.py --mode devtests --testtype object_info --model half-cheetah
+
+
+####################################
+#              appendix 1
+####################################
+
+# basic example here
+python mujoco_entry.py --mode srd-expt --exptcodename dtest --model half-cheetah --srd off --inhibitor 0 --bswing 5 --exptlabel 0 
+python mujoco_entry.py --mode srd-expt --exptcodename dtest --model half-cheetah --srd off --inhibitor 0 --bswing 5 --exptlabel 1
+python mujoco_entry.py --mode srd-expt --exptcodename dtest --model half-cheetah --srd off --inhibitor 0 --bswing 3 --exptlabel 0 
+python mujoco_entry.py --mode srd-expt --exptcodename dtest --model half-cheetah --srd off --inhibitor 0 --bswing 3 --exptlabel 1
+
+python mujoco_entry.py --mode srd-expt --exptcodename dtest --model half-cheetah --srd on --inhibitor 0 --bswing 5 --exptlabel 0 
+python mujoco_entry.py --mode srd-expt --exptcodename dtest --model half-cheetah --srd off --inhibitor 2. --bswing 5 --exptlabel 0 
+python mujoco_entry.py --mode srd-expt --exptcodename dtest --model half-cheetah --srd on --inhibitor 2. --bswing 5 --exptlabel 0 
+
+python mujoco_entry.py --mode srd-visualize --exptcodename dtest --model half-cheetah
+
+####################################
+#              appendix 2
+####################################
+# test mass expt 
+python mujoco_entry.py --mode srd-expt-mass --model half-cheetah --exptcodename mass_expt_test
+python mujoco_entry.py --mode srd-visualize --model half-cheetah --exptcodename mass_expt_test

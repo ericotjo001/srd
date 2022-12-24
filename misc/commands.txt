@@ -1,0 +1,89 @@
+####################################
+# ROBOT FISH EXAMPLE
+####################################
+
+python main.py --mode robotfish --PROJECT_NAME robotfish01
+python main.py --mode robotfish --fishmode srd --PROJECT_NAME robotfish01 --n_iter 4096
+
+python main.py --mode evAuction --auctionmode fishSRD_mass --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/noOptim_r0.5 --PROJECT_NAME auto
+
+####################################
+# ROBOT FISH EXAMPLE
+####################################
+
+# Observation mode: this is where we manually observe how the values vary with input
+python main.py --mode evAuction --auctionmode fishSRD --stage observation --patron_model srd
+python main.py --mode evAuction --auctionmode fishSRD --stage observation_pfc --patron_model srd
+
+# this is an example of how the experiment is run with dummy model
+python main.py --mode evAuction --auctionmode fish --stage auctionNoOptim --patron_model dummy --n_patrons 64 --rarity 0.5 --PROJECT_NAME fishSale-dummy-p64-r0.5-001 
+
+# this is an example of how the experiment is run with SRD model, without and with SRD Optim. 
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.5 --PROJECT_NAME noOptim-p64-r0.5
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.5 --PROJECT_NAME Optim-p64-r0.5
+
+
+# now, let's do some mass experiments. See appendix 1. The commands in appendix get a little cumbersome, so let's use a more economical set of codes to perform multiple experiments at once.
+
+python main.py --mode evAuction --auctionmode fishSRD_mass --stage auctionNoOptim --patron_model srd --n_patrons 64  --rarities 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 --N_EXPT 10 
+python main.py --mode evAuction --auctionmode fishSRD_mass --stage auctionOptim --patron_model srd --n_patrons 64  --rarities 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 --N_EXPT 10
+
+python main.py --mode evAuction --auctionmode result --stage price_vs_rarity --CKPT_FOLDER checkpoint --name_prefix_cue fishSale --noOptim_folder NoOp_p64_r0.1 NoOp_p64_r0.2 NoOp_p64_r0.3 NoOp_p64_r0.4 NoOp_p64_r0.5 NoOp_p64_r0.6 NoOp_p64_r0.7 NoOp_p64_r0.8 NoOp_p64_r0.9  --Optim_folder Op_p64_r0.1 Op_p64_r0.2 Op_p64_r0.3 Op_p64_r0.4 Op_p64_r0.5 Op_p64_r0.6 Op_p64_r0.7 Op_p64_r0.8 Op_p64_r0.9
+
+python main.py --mode evAuction --auctionmode result --stage purchase_rate --CKPT_FOLDER checkpoint --name_prefix_cue fishSale --noOptim_folder NoOp_p64_r0.1 NoOp_p64_r0.2 NoOp_p64_r0.3 NoOp_p64_r0.4 NoOp_p64_r0.5 NoOp_p64_r0.6 NoOp_p64_r0.7 NoOp_p64_r0.8 NoOp_p64_r0.9  --Optim_folder Op_p64_r0.1 Op_p64_r0.2 Op_p64_r0.3 Op_p64_r0.4 Op_p64_r0.5 Op_p64_r0.6 Op_p64_r0.7 Op_p64_r0.8 Op_p64_r0.9
+
+
+# example of a compromised system
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --screening_mode compromised --n_patrons 64 --rarity 0.5 --PROJECT_NAME compr-noOptim-p64-r0.5
+
+# now, let's do some mass experiments for compromised system
+python main.py --mode evAuction --auctionmode fishSRD_mass --stage auctionNoOptim --patron_model srd --screening_mode compromised --n_patrons 64  --rarities 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9  --N_EXPT 10
+python main.py --mode evAuction --auctionmode fishSRD_mass --stage auctionOptim --patron_model srd --screening_mode compromised --n_patrons 64  --rarities 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9  --N_EXPT 10
+
+python main.py --mode evAuction --auctionmode result --stage price_vs_rarity --CKPT_FOLDER checkpoint --name_prefix_cue fishSale --screening_mode compromised --noOptim_folder compr-NoOp_p64_r0.1 compr-NoOp_p64_r0.2 compr-NoOp_p64_r0.3 compr-NoOp_p64_r0.4 compr-NoOp_p64_r0.5 compr-NoOp_p64_r0.6 compr-NoOp_p64_r0.7 compr-NoOp_p64_r0.8 compr-NoOp_p64_r0.9  --Optim_folder compr-Op_p64_r0.1 compr-Op_p64_r0.2 compr-Op_p64_r0.3 compr-Op_p64_r0.4 compr-Op_p64_r0.5 compr-Op_p64_r0.6 compr-Op_p64_r0.7 compr-Op_p64_r0.8 compr-Op_p64_r0.9
+
+python main.py --mode evAuction --auctionmode result --stage purchase_rate --CKPT_FOLDER checkpoint --name_prefix_cue fishSale --screening_mode compromised --noOptim_folder compr-NoOp_p64_r0.1 compr-NoOp_p64_r0.2 compr-NoOp_p64_r0.3 compr-NoOp_p64_r0.4 compr-NoOp_p64_r0.5 compr-NoOp_p64_r0.6 compr-NoOp_p64_r0.7 compr-NoOp_p64_r0.8 compr-NoOp_p64_r0.9  --Optim_folder compr-Op_p64_r0.1 compr-Op_p64_r0.2 compr-Op_p64_r0.3 compr-Op_p64_r0.4 compr-Op_p64_r0.5 compr-Op_p64_r0.6 compr-Op_p64_r0.7 compr-Op_p64_r0.8 compr-Op_p64_r0.9
+
+####################################
+#              appendix 0 
+####################################
+# devtests
+python main.py --mode evAuction --auctionmode testdummypatron
+python main.py --mode evAuction --auctionmode testsrdpatron
+
+####################################
+#              appendix 1 
+####################################
+
+# Let's compare srd and non-srd. fix no. of patrons and rarity
+
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/noOptim_r0.5 --PROJECT_NAME auto --EXPT_NUMBER 001 
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/noOptim_r0.5 --PROJECT_NAME auto --EXPT_NUMBER 002
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/noOptim_r0.5 --PROJECT_NAME auto --EXPT_NUMBER 003 
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/noOptim_r0.5 --PROJECT_NAME auto --EXPT_NUMBER 004 
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/noOptim_r0.5 --PROJECT_NAME auto --EXPT_NUMBER 005 
+
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/Optim_r0.5 --PROJECT_NAME auto  --EXPT_NUMBER 001
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/Optim_r0.5 --PROJECT_NAME auto  --EXPT_NUMBER 002
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/Optim_r0.5 --PROJECT_NAME auto  --EXPT_NUMBER 003
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/Optim_r0.5 --PROJECT_NAME auto  --EXPT_NUMBER 004
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.5 --CKPT_FOLDER checkpoint/Optim_r0.5 --PROJECT_NAME auto  --EXPT_NUMBER 005
+
+# you can see the partial result first
+python main.py --mode evAuction --auctionmode result --stage price_vs_rarity --CKPT_FOLDER checkpoint --name_prefix_cue fishSale --noOptim_folder noOptim_r0.5 --Optim_folder Optim_r0.5
+
+
+# Now let's change the rarity
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/noOptim_r0.25 --PROJECT_NAME auto --EXPT_NUMBER 001
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/noOptim_r0.25 --PROJECT_NAME auto --EXPT_NUMBER 002
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/noOptim_r0.25 --PROJECT_NAME auto --EXPT_NUMBER 003
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/noOptim_r0.25 --PROJECT_NAME auto --EXPT_NUMBER 004
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionNoOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/noOptim_r0.25 --PROJECT_NAME auto --EXPT_NUMBER 005 
+
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/Optim_r0.25 --PROJECT_NAME auto  --EXPT_NUMBER 001
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/Optim_r0.25 --PROJECT_NAME auto  --EXPT_NUMBER 002
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/Optim_r0.25 --PROJECT_NAME auto  --EXPT_NUMBER 003
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/Optim_r0.25 --PROJECT_NAME auto  --EXPT_NUMBER 004
+python main.py --mode evAuction --auctionmode fishSRD --stage auctionOptim --patron_model srd --n_patrons 64 --rarity 0.25 --CKPT_FOLDER checkpoint/Optim_r0.25 --PROJECT_NAME auto  --EXPT_NUMBER 005
+
+python main.py --mode evAuction --auctionmode result --stage price_vs_rarity --CKPT_FOLDER checkpoint --name_prefix_cue fishSale --noOptim_folder noOptim_r0.1 noOptim_r0.25 --Optim_folder Optim_r0.1 Optim_r0.25 
