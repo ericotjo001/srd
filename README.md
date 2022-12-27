@@ -16,12 +16,16 @@ Some manual installation is still necessary. We use pytorch 1.12.1. Please perfo
 
 ### Fish sale auction
 In this scenario, traditional RL is not the suitable choice since interpretability is crucial. Fig. (C) is our main result, while fig. (D) shows the result where the lack of interpretability results in sabotaged result.
+
 <img src="https://drive.google.com/uc?export=view&id=18woxwEba2NcuGddMsPLd-UxpbIdWHFZC" width="540"></img>
 
 ### MuJoCo and Half Cheetah
 In this scenario, we use SRD to control half cheetah motion. 
+
 <img src="https://drive.google.com/uc?export=view&id=1Q57N4Bw-LAacuaddAeTIKGh77dnhcDXr" width="540"></img>
+
 In the following example, we show movement with inhibitor=2, i.e. we allow the user to give "stop" instruction.
+
 <img src="https://drive.google.com/uc?export=view&id=1o5Omkic3IaZt8YYkRe5Sl_Gdg_ON5xvq" width="360"></img>
 
 ## Version 1
@@ -34,6 +38,7 @@ Existing results can be found in google drive <a href="https://drive.google.com/
 
 ## Toy Fish
 A simple toy world where a fish either moves or eats food, while trying to stay alive.
+
 <img src="https://drive.google.com/uc?export=view&id=1-qvG1E_AThX0-XOsw-zJvl9bAvfxKLcD" width="480"></img>
 
 ## Robot2D in Lava land
