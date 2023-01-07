@@ -28,6 +28,10 @@ In the following example, we show movement with inhibitor=2, i.e. we allow the u
 
 <img src="https://drive.google.com/uc?export=view&id=1o5Omkic3IaZt8YYkRe5Sl_Gdg_ON5xvq" width="360"></img>
 
+To-do:
+1. remove ROOT_DIR argument that is not used.
+2. add more mujoco examples.
+
 ## Version 1
 
 All codes for version 1 has been moved into legacy/v1.
