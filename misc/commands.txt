@@ -1,3 +1,5 @@
+The commands here are for python 3 in Windows OS. Use python3 commands accordingly in Unix system.
+
 ####################################
 # ROBOT FISH EXAMPLE
 ####################################
